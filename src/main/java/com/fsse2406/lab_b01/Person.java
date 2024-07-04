@@ -1,10 +1,21 @@
 package com.fsse2406.lab_b01;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Person {
+    @JsonProperty("first_name")
     private String firstName;
+    @JsonProperty("last_name")
     private String lastName;
+    @JsonProperty("hkid_number")
     private String hkId;
 
+
+    public Person(String firstName, String lastName, String hkId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hkId = hkId;
+    }
     public String getHkId() {
 
         return hkId;

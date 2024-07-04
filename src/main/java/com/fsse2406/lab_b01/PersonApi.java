@@ -21,13 +21,14 @@ public class PersonApi {
    public List<Person> getAllPeople() {
       return people;
    }
+
    @PutMapping("/person/update")
    public ResponseEntity<Person> updatePerson(@RequestBody Person updatePerson) {
       for (Person person : people) {
          if (person.getHkId().equals(updatePerson.getHkId())) {
             person.setFirstName(updatePerson.getFirstName());
             person.setLastName(updatePerson.getLastName());
-            return new ResponseEntity<>(updatePerson, HttpStatus.OK);
+            return new ResponseEntity<>(person, HttpStatus.OK);
          }
       }
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -37,11 +38,11 @@ public class PersonApi {
    @DeleteMapping("/person/delete")
    public ResponseEntity<Person> deletePerson(@RequestBody Person removePerson) {
       for (Person person : people) {
-         System.out.println(removePerson.getHkId());
          if (person.getHkId().equals(removePerson.getHkId())) {
             people.remove(person);
             return new ResponseEntity<>(removePerson, HttpStatus.OK);
          }
-      } return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
    }
-}
+   }
